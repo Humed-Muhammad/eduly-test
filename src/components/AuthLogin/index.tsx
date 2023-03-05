@@ -37,7 +37,7 @@ export const AuthLogin = ({ signInText }: { signInText: string }) => {
           cursor="pointer"
           _hover={{
             shadow: "lg",
-            background: "primary",
+            background: "gray.600",
             color: "white",
           }}
           width="full"
