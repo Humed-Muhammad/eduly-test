@@ -10,7 +10,6 @@ export const RedirectPage = () => {
   const provider = JSON.parse(localStorage.getItem("provider")!);
   const router = useNavigate();
   const toast = useToast();
-  // pb.autoCancellation(false);
 
   const authenticate = useCallback(() => {
     if (provider?.state !== params?.get("state")) {

@@ -9,7 +9,6 @@ import { GitHub } from "react-feather";
 export const AuthLogin = ({ signInText }: { signInText: string }) => {
   const [providers, setProviders] = useState<AuthProviderInfo[]>();
   const fetchProviders = useCallback(async () => {
-    // pb.autoCancellation(false);
     const providers = await pb.collection("users").listAuthMethods();
     setProviders(providers.authProviders);
   }, []);
@@ -39,6 +38,8 @@ export const AuthLogin = ({ signInText }: { signInText: string }) => {
           cursor="pointer"
           _hover={{
             shadow: "lg",
+            background: "primary",
+            color: "white",
           }}
           width="full"
           height="10"
@@ -51,7 +52,9 @@ export const AuthLogin = ({ signInText }: { signInText: string }) => {
           key={key}
         >
           <Center>
-            <Text mr="2">{item?.name?.toUpperCase()}</Text>
+            <Text color="inherit" mr="2">
+              {item?.name?.toUpperCase()}
+            </Text>
             {iconSet[item?.name]}
           </Center>
         </Card>
