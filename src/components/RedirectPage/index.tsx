@@ -51,7 +51,6 @@ export const RedirectPage = () => {
 
   useEffect(() => {
     authenticate();
-    console.log("Inside Authentication");
   }, []);
 
   return (

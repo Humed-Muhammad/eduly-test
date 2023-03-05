@@ -15,11 +15,10 @@ export const AuthLogin = ({ signInText }: { signInText: string }) => {
 
   useEffect(() => {
     fetchProviders();
-    console.log("first");
   }, []);
+  console.log(redirectUrl);
   const loginWithAuth = (prov: AuthProviderInfo) => {
     localStorage.setItem("provider", JSON.stringify(prov));
-
     const url = prov.authUrl + redirectUrl;
 
     if (typeof window !== "undefined") {
