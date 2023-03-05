@@ -1,0 +1,39 @@
+import React, { lazy, Suspense } from 'react'
+
+import { Container, Spinner } from '@chakra-ui/react'
+
+interface Opts {
+  fallback: any
+}
+type Unpromisify<T> = T extends Promise<infer P> ? P : never
+
+export const lazyLoad = <
+  T extends Promise<any>,
+  U extends React.ComponentType<any>
+>(
+  importFunc: () => T,
+  selectorFunc?: (s: Unpromisify<T>) => U,
+  opts: Opts = {
+    fallback: (
+      <Container>
+        <Spinner />
+      </Container>
+    ),
+  }
+) => {
+  let lazyFactory: () => Promise<{ default: U }> = importFunc
+
+  if (selectorFunc) {
+    lazyFactory = () =>
+      importFunc().then((module) => ({ default: selectorFunc(module) }))
+  }
+
+  const LazyComponent = lazy(lazyFactory)
+
+  return (props: React.ComponentProps<U>): JSX.Element => (
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    <Suspense fallback={opts.fallback!}>
+      <LazyComponent {...props} />
+    </Suspense>
+  )
+}
