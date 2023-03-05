@@ -1,1 +1,1 @@
-export const redirectUrl = "http://localhost:3000/redirect";
+export const redirectUrl = import.meta.env.VITE_REDIRECT_URL;

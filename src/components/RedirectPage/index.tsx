@@ -2,7 +2,7 @@ import { pb, setToLocalStorage } from "@/utils";
 import { redirectUrl } from "@/utils/constant";
 import { Center, Spinner, Text, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export const RedirectPage = () => {
   //@ts-ignore
